@@ -17,8 +17,6 @@ namespace PriceCalculator
             StrategyParameters
         }
 
-        private static readonly string _filename = "discounts.txt";
-
         private IList<IAmAPriceStrategy> AllPriceStrategies = new List<IAmAPriceStrategy>();
 
         public IEnumerable<IAmAnItemPriceStrategy> ItemPriceStrategies => AllPriceStrategies.Where(s => s is IAmAnItemPriceStrategy)
@@ -26,11 +24,11 @@ namespace PriceCalculator
         public IEnumerable<IAmABasketPriceStrategy> BasketPriceStrategies => AllPriceStrategies.Where(s => s is IAmABasketPriceStrategy)
                                                                                                .Cast<IAmABasketPriceStrategy>();
 
-        public Discounts()
+        public Discounts(string source = "discounts.txt")
         {
             try
             {
-                var discounts = File.ReadAllLines(_filename);
+                var discounts = File.ReadAllLines(source);
 
                 AllPriceStrategies = discounts.Where(line => !line.TrimStart().StartsWith("#"))
                                               .Select(line => CreatePriceStrategy(line))
@@ -40,7 +38,7 @@ namespace PriceCalculator
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine($"{_filename} not found. No discounts to apply");
+                Console.WriteLine($"{source} not found. No discounts to apply");
             }
         }
 

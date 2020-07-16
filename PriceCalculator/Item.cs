@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PriceCalculator.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,13 +14,14 @@ namespace PriceCalculator
         /// The unit
         /// </summary>
         public Unit Unit;
-        private string v1;
-        private decimal v2;
 
-        public Item(string v1, decimal v2, Unit unit)
+        public Item(string name, string price, Unit unit)
         {
-            this.v1 = v1;
-            this.v2 = v2;
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentNullException(nameof(name));
+
+            Name = name;
+            Price = price.ToDecimalFromCurrency();
             Unit = unit;
         }
 
@@ -29,7 +31,7 @@ namespace PriceCalculator
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the price.

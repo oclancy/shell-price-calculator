@@ -1,4 +1,5 @@
-﻿using PriceCalculator.PricingStrategies;
+﻿using PriceCalculator.Extensions;
+using PriceCalculator.PricingStrategies;
 
 using System;
 
@@ -41,7 +42,7 @@ namespace PriceCalculator.PricingStrategy
             if (item.Name == TargetItemType)
             {
                 var discount = item.Price * (PercDiscount / 100);
-                return (discount, $"{TargetItemType} {PercDiscount}% off: -{discount:C2}");
+                return (discount, $"{TargetItemType} {PercDiscount}% off: -{discount.ToCurrencyStringFromDecimal()}");
             }
 
             return (0m, string.Empty);

@@ -1,0 +1,5 @@
+﻿#name,price,unit
+Beans,65p,can
+Bread,80p,loaf
+Milk,£1.30,bottle
+Apples,£1.00,bag

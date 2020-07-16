@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PriceCalculator.Extensions;
+using System;
 using System.Linq;
 
 namespace PriceCalculator
@@ -9,7 +10,7 @@ namespace PriceCalculator
         {
             if (args.Length == 0)
             {
-                Console.WriteLine("Please enter a items top add to the basket.");
+                Console.WriteLine("Please enter items to add to the basket.");
                 return;
             }
 
@@ -32,7 +33,7 @@ namespace PriceCalculator
 
         static public void PrintSubTotal(Basket basket)
         {
-            Console.WriteLine($"Subtotal: {basket.Sum(i => i.Price):C2}");
+            Console.WriteLine($"Subtotal: {basket.Sum(i => i.Price).ToCurrencyStringFromDecimal()}");
         }
 
         static public void PrintDiscounts(Basket basket)

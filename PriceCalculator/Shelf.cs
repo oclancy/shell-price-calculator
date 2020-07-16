@@ -10,8 +10,6 @@ namespace PriceCalculator
     {
         public Dictionary<string, Item> Items { get; private set; }
 
-        private static readonly string _filename = "discounts.txt";
-
         enum ItemParts
         {
             Name,
@@ -19,16 +17,16 @@ namespace PriceCalculator
             Unit
         }
 
-        public Shelf()
+        public Shelf(string source = "items.txt")
         {
-            ReadItems();
+            ReadItems(source);
         }
 
-        private void ReadItems()
+        private void ReadItems(string source)
         {
             try
             {
-                var discounts = File.ReadAllLines(_filename);
+                var discounts = File.ReadAllLines(source);
 
                 Items = discounts.Where(line => !line.TrimStart().StartsWith("#"))
                                 .Select(line => CreateItem(line))
@@ -38,7 +36,7 @@ namespace PriceCalculator
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine($"{_filename} not found. No discounts to apply");
+                Console.WriteLine($"{source} not found. No discounts to apply");
             }
         }
 
@@ -53,7 +51,7 @@ namespace PriceCalculator
             {
                 var parts = line.Split(',');
                 return new Item(parts[(int)ItemParts.Name],
-                                decimal.Parse(parts[(int)ItemParts.Price], NumberStyles.Any),
+                                parts[(int)ItemParts.Price],
                                 Enum.Parse<Unit>(parts[(int)ItemParts.Unit]));
 
             }

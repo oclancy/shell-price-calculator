@@ -17,7 +17,7 @@ namespace PriceCalculator
         /// <param name="basketPricingStrategies">The basket pricing strategies.</param>
         /// <param name="itemPricingStrategies">The item pricing strategies.</param>
         public Basket(IEnumerable<IAmABasketPriceStrategy> basketPricingStrategies,
-                       IEnumerable<IAmAnItemPriceStrategy> itemPricingStrategies)
+                      IEnumerable<IAmAnItemPriceStrategy> itemPricingStrategies)
         {
             BasketPricingStrategies = basketPricingStrategies ?? Enumerable.Empty<IAmABasketPriceStrategy>() ;
             ItemPricingStrategies = itemPricingStrategies ?? Enumerable.Empty<IAmAnItemPriceStrategy>();

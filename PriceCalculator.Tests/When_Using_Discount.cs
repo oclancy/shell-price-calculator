@@ -3,12 +3,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PriceCalculator.Tests
 {
     [TestClass]
-    public class BasketPriceStrategyTests
+    public class When_Using_Discount
     {
-        MultiBuy
         [TestMethod]
-        public void Will_Apply_Strategy()
+        public void Can_Load_Discounts()
         {
+            var discounts = new Discounts();
         }
     }
 }
