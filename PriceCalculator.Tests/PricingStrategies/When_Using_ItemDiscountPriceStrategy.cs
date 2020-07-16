@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PriceCalculator.PricingStrategy;
+using PriceCalculator.PricingStrategies;
 
 namespace PriceCalculator.PriceStrategies.Tests
 {

@@ -42,7 +42,9 @@ namespace PriceCalculator
 
         internal Item GetItem(string item)
         {
-            return Items[item];
+            if (Items.ContainsKey(item))
+                return Items[item];
+            return null;
         }
 
         Item CreateItem(string line)

@@ -3,7 +3,7 @@ using PriceCalculator.PricingStrategies;
 
 using System;
 
-namespace PriceCalculator.PricingStrategy
+namespace PriceCalculator.PricingStrategies
 {
     /// <summary>
     /// Describes a discount for a target item type

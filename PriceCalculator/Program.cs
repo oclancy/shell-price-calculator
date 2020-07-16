@@ -28,12 +28,18 @@ namespace PriceCalculator
 
             PrintSubTotal(basket);
             PrintDiscounts(basket);
+            PrintSubTotal(basket);
         }
 
 
         static public void PrintSubTotal(Basket basket)
         {
             Console.WriteLine($"Subtotal: {basket.Sum(i => i.Price).ToCurrencyStringFromDecimal()}");
+        }
+
+        static public void PrintTotal(Basket basket)
+        {
+            Console.WriteLine($"Total: {basket.Price.ToCurrencyStringFromDecimal()}");
         }
 
         static public void PrintDiscounts(Basket basket)

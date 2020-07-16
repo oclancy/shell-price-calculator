@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PriceCalculator.Extensions;
-using PriceCalculator.PricingStrategy;
+using PriceCalculator.PricingStrategies;
 using System.Linq;
 
 namespace PriceCalculator.PriceStrategies.Tests

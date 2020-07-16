@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Linq;
 
 namespace PriceCalculator.Tests
 {
@@ -9,6 +10,10 @@ namespace PriceCalculator.Tests
         public void Can_Load_Discounts()
         {
             var discounts = new Discounts();
+
+            Assert.AreEqual(1, discounts.ItemPriceStrategies.Count());
+
+            Assert.AreEqual(1, discounts.BasketPriceStrategies.Count());
         }
     }
 }

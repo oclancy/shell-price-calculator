@@ -12,7 +12,6 @@ namespace PriceCalculator
     {
         enum StrategyParts
         {
-            ItemType,
             DiscountStrategyType,
             StrategyParameters
         }
@@ -46,11 +45,11 @@ namespace PriceCalculator
         {
             // line format is 
             //DiscountStrategy,StrategyParameters
-            var parts = line.Split();
+            var parts = line.Split(',');
 
             // naive parameter parsing
             object[] strategyParameters = parts[(int)StrategyParts.StrategyParameters]
-                                                                  .Split(' ')
+                                                                  .Split('|')
                                                                   .Select( (s) => {
                                                                       if (decimal.TryParse(s, out var dec))
                                                                           return dec as object;
@@ -59,14 +58,18 @@ namespace PriceCalculator
                                                                   })
                                                                   .ToArray();
 
-
             try
             {
                 // dynamically create
                 var strategy = Activator.CreateInstance(Assembly.GetExecutingAssembly().FullName,
                                                         parts[(int)StrategyParts.DiscountStrategyType],
-                                                        strategyParameters);
-                return strategy as IAmAPriceStrategy;
+                                                        false,
+                                                        0,
+                                                        null,
+                                                        strategyParameters,
+                                                        null,
+                                                        null);
+                return strategy.Unwrap() as IAmAPriceStrategy;
             }
             catch (Exception ex)
             {

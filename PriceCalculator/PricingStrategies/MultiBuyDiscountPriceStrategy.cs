@@ -23,7 +23,7 @@ namespace PriceCalculator.PricingStrategies
         /// <param name="targetItemType">Type of the target item.</param>
         /// <param name="percDiscount">The discount.</param>
         /// <exception cref="ArgumentNullException">sourceItemType</exception>
-        public MultiBuyDiscountPriceStrategy(string sourceItemType, int sourceQty, string targetItemType, decimal percDiscount)
+        public MultiBuyDiscountPriceStrategy(string sourceItemType, decimal sourceQty, string targetItemType, decimal percDiscount)
         {
             if (percDiscount > 100 || percDiscount < 0) throw new ArgumentException("Should be between 0 ad 100", nameof(percDiscount));
 
@@ -34,7 +34,7 @@ namespace PriceCalculator.PricingStrategies
 
             TargetItemType = targetItemType ?? SourceItemType;
 
-            Quantity = sourceQty;
+            Quantity = (int)sourceQty;
 
             PercDiscount = percDiscount;
         }
