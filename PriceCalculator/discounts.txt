@@ -1,0 +1,3 @@
+﻿#DiscountStrategy,StrategyParameters
+ItemPercDiscount, Apples 10
+MultiBuyDiscountPriceStrategy, Beans 2 Loaf 50
