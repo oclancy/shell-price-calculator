@@ -10,7 +10,7 @@
 
 
 
-# Recieved Brief
+# Received Brief
 ## Programming Challenge: Price Calculator for Shopping Basket
 
 ### Expectation
