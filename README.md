@@ -8,7 +8,8 @@
 - sterling only
 - all available items must have positive non-zero price
 
-
+## Build
+- The solution requires .Net Core 3.1
 
 # Received Brief
 ## Programming Challenge: Price Calculator for Shopping Basket
