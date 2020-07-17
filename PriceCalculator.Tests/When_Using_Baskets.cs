@@ -17,10 +17,10 @@ namespace PriceCalculator.Tests
         public void Initialize() 
         {
             mockBasketStrategy = new Mock<IAmABasketPriceStrategy>();
-            mockBasketStrategy.Setup(m => m.GetDiscount(It.IsAny<Basket>())).Returns((10, "mock basket strategy"));
+            mockBasketStrategy.Setup(m => m.GetDiscount(It.IsAny<Basket>())).Returns((0.1m, "mock basket strategy"));
 
             mockItemStrategy = new Mock<IAmAnItemPriceStrategy>();
-            mockItemStrategy.Setup(m => m.GetDiscount(It.IsAny<Item>())).Returns((20, "mock item strategy"));
+            mockItemStrategy.Setup(m => m.GetDiscount(It.IsAny<Item>())).Returns((0.2m, "mock item strategy"));
         }
         
         [TestMethod]
@@ -32,8 +32,8 @@ namespace PriceCalculator.Tests
 
             basket.PriceBasket();
 
-            Assert.AreEqual(30m, basket.SubTotal);
-            Assert.AreEqual(10m, basket.Price);
+            Assert.AreEqual(.30m, basket.SubTotal);
+            Assert.AreEqual(.10m, basket.Price);
             Assert.AreEqual(1, basket.DiscountMessages.Count());
 
             mockBasketStrategy.Verify(m => m.GetDiscount(It.IsAny<Basket>()), Times.Never);
@@ -49,8 +49,8 @@ namespace PriceCalculator.Tests
 
             basket.PriceBasket();
 
-            Assert.AreEqual(50m, basket.SubTotal);
-            Assert.AreEqual(40m, basket.Price);
+            Assert.AreEqual(.50m, basket.SubTotal);
+            Assert.AreEqual(.40m, basket.Price);
             Assert.AreEqual(1, basket.DiscountMessages.Count());
 
             mockBasketStrategy.Verify(m => m.GetDiscount(It.IsAny<Basket>()), Times.Once);
@@ -67,8 +67,8 @@ namespace PriceCalculator.Tests
 
             basket.PriceBasket();
 
-            Assert.AreEqual(80m, basket.SubTotal);
-            Assert.AreEqual(30m, basket.Price);
+            Assert.AreEqual(.80m, basket.SubTotal);
+            Assert.AreEqual(.30m, basket.Price);
             Assert.AreEqual(3, basket.DiscountMessages.Count());
 
             mockBasketStrategy.Verify(m => m.GetDiscount(It.IsAny<Basket>()), Times.Once);

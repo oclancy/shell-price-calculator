@@ -49,6 +49,14 @@ namespace PriceCalculator.PriceStrategies.Tests
         }
 
         [TestMethod]
+        public void Can_Convert_Unit_Price_To_Pence()
+        {
+            var price = 0.03m.ToCurrencyStringFromDecimal();
+
+            Assert.AreEqual("3p", price);
+        }
+
+        [TestMethod]
         public void Can_Convert_Price_To_GBP()
         {
             var price = 1m.ToCurrencyStringFromDecimal();

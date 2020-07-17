@@ -15,8 +15,8 @@ namespace PriceCalculator.PriceStrategies.Tests
 
             var (discount,message) = strategy.GetDiscount(testItem);
 
-            Assert.AreEqual(3m, discount);
-            Assert.AreEqual("Apples 30% off: -3p", message);
+            Assert.AreEqual(0.03m, discount);
+            Assert.AreEqual("Apples 10% off: -3p", message);
         }
 
         [TestMethod]

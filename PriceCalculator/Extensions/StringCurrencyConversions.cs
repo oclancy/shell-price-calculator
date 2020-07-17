@@ -9,6 +9,12 @@ namespace PriceCalculator.Extensions
 {
     public static class StringCurrencyConversions
     {
+        /// <summary>
+        /// Converts to decimal from currency.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">source</exception>
         public static decimal ToDecimalFromCurrency(this string source)
         {
             if (string.IsNullOrEmpty(source))
@@ -24,13 +30,20 @@ namespace PriceCalculator.Extensions
             return decimal.Parse(source, NumberStyles.Any)/factor;
         }
 
+        /// <summary>
+        /// Converts decimal to  Sterling currency string.
+        /// Pretty naive implemntation to fulfill brief
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns></returns>
         public static string ToCurrencyStringFromDecimal(this decimal source)
         {
            
             if (source<1)
             {
-                // remove "£0." and add 'p'
-                return $"{source:C2}p".Substring(3);
+                // remove "£0." and add 'p'. Remove leading zeroes
+                return $"{source:C2}p".Substring(3)
+                                      .Trim('0');
             }
             return $"{source:C2}";
         }
