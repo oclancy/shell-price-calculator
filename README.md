@@ -2,7 +2,15 @@
 
 ![alt text](https://www.logodesignlove.com/images/evolution/shell-logo-design.gif "Shell logo")
 
+## Assumptions
 
+- discounts do not interact
+- sterling only
+- all available items must have positive non-zero price
+
+
+
+# Recieved Brief
 ## Programming Challenge: Price Calculator for Shopping Basket
 
 ### Expectation
