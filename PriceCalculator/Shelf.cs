@@ -73,6 +73,8 @@ namespace PriceCalculator
         {
             if (Items.ContainsKey(item))
                 return Items[item];
+
+            Console.WriteLine($"Unknown item '{item}'.");
             return null;
         }
 

@@ -4,6 +4,16 @@ using System.Linq;
 
 namespace PriceCalculator
 {
+    /// <summary>
+    /// PriceCalculator
+    /// 
+    /// Usage:
+    /// PriceCalculator item item item
+    /// 
+    /// Source files:
+    /// By default Items are loaded from items.txt
+    /// By default discount strategies are loaded from discounts.txt
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
@@ -14,9 +24,12 @@ namespace PriceCalculator
                 return;
             }
 
+            // Load items
             Shelf shelf = new Shelf();
+            // Load discounts
             Discounts discounts = new Discounts();
 
+            // create basket of items
             Basket basket = new Basket(discounts.BasketPriceStrategies, discounts.ItemPriceStrategies);
 
             foreach (var arg in args)
@@ -26,9 +39,13 @@ namespace PriceCalculator
                     basket.Add(item);
             }
 
+            // Run pricing
+            basket.PriceBasket();
+
+            // Output
             PrintSubTotal(basket);
             PrintDiscounts(basket);
-            PrintSubTotal(basket);
+            PrintTotal(basket);
         }
 
 

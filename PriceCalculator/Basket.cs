@@ -67,7 +67,8 @@ namespace PriceCalculator
                 {
                     var (discount, message) = strategy.GetDiscount(item);
                     Price -= discount;
-                    _discountMessages.Add(message);
+                    if(!string.IsNullOrEmpty(message))
+                        _discountMessages.Add(message);
                 }
             }
 
@@ -76,7 +77,8 @@ namespace PriceCalculator
             {
                 var (discount, message) = strategy.GetDiscount(this);
                 Price -= discount;
-                _discountMessages.Add(message);
+                if (!string.IsNullOrEmpty(message))
+                    _discountMessages.Add(message);
             }
         }
 

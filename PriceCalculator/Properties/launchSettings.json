@@ -2,7 +2,7 @@
   "profiles": {
     "PriceCalculator": {
       "commandName": "Project",
-      "commandLineArgs": " Apple Milk Bread"
+      "commandLineArgs": "Beans Beans Bread"
     }
   }
 }
