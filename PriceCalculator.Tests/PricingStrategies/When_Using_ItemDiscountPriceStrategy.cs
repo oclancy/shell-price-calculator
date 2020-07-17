@@ -1,11 +1,27 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PriceCalculator.PricingStrategies;
+using System;
 
 namespace PriceCalculator.PriceStrategies.Tests
 {
     [TestClass]
     public class When_Using_ItemDiscountPriceStrategy
     {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Will_Throw_On_Discount_0()
+        {
+            new ItemPercDiscountPriceStrategy("Apples", 0);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Will_Throw_On_Discont_Greater_Than_100()
+        {
+            new ItemPercDiscountPriceStrategy("Apples", 101);
+        }
+
+
         [TestMethod]
         public void Will_Discount_Matched_Item()
         {

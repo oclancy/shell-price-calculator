@@ -1,5 +1,4 @@
 ﻿using PriceCalculator.Extensions;
-using PriceCalculator.PricingStrategies;
 
 using System;
 
@@ -23,7 +22,7 @@ namespace PriceCalculator.PricingStrategies
         /// <exception cref="ArgumentException">itemtype</exception>
         public ItemPercDiscountPriceStrategy(string itemtype, decimal percDiscount)
         {
-            if (percDiscount > 100 || percDiscount < 0) throw new ArgumentException("Should be between 0 and 100", nameof(percDiscount));
+            if (percDiscount > 100 || percDiscount <= 0) throw new ArgumentException("Should be between 0 and 100", nameof(percDiscount));
 
             if (string.IsNullOrEmpty(itemtype))
                 throw new ArgumentException(nameof(itemtype));

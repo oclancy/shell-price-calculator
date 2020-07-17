@@ -22,6 +22,8 @@ namespace PriceCalculator
 
             Name = name;
             Price = price.ToDecimalFromCurrency();
+            if (Price <= 0)
+                throw new ArgumentException("Price must be positive value", nameof(price));
             Unit = unit;
         }
 
