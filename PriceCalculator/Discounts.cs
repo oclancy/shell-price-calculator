@@ -8,8 +8,18 @@ using System.Reflection;
 
 namespace PriceCalculator
 {
+    /// <summary>
+    /// Loads discounts from file
+    /// Default file is ".\discounts.txt"
+    /// All discounts must exist in the executing assembly
+    /// Discount load failure is non-terminating.
+    /// </summary>
     public class Discounts
     {
+
+        /// <summary>
+        /// The line parts
+        /// </summary>
         enum StrategyParts
         {
             DiscountStrategyType,
@@ -23,6 +33,10 @@ namespace PriceCalculator
         public IEnumerable<IAmABasketPriceStrategy> BasketPriceStrategies => AllPriceStrategies.Where(s => s is IAmABasketPriceStrategy)
                                                                                                .Cast<IAmABasketPriceStrategy>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Discounts"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
         public Discounts(string source = "discounts.txt")
         {
             try
@@ -41,10 +55,13 @@ namespace PriceCalculator
             }
         }
 
+        /// <summary>
+        /// Creates the price strategy.
+        /// </summary>
+        /// <param name="line">The line.</param>
+        /// <returns></returns>
         IAmAPriceStrategy CreatePriceStrategy(string line)
         {
-            // line format is 
-            //DiscountStrategy,StrategyParameters
             var parts = line.Split(',');
 
             // naive parameter parsing

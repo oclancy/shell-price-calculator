@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PriceCalculator
+﻿namespace PriceCalculator
 {
+    /// <summary>
+    /// Units for the items
+    /// </summary>
     public enum Unit
     {
         can,

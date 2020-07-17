@@ -88,7 +88,7 @@ namespace PriceCalculator.PriceStrategies.Tests
             Item testLoaf = new Item("Bread", "£1.20p", Unit.loaf);
             var basket = new Basket(new[] { strategy }, Enumerable.Empty<IAmAnItemPriceStrategy>());
 
-            //5 apples should be 2* discount = .30*5 - (2*(.30/100*10)) = 6p
+            //2 apples should be 2* discount = .30*5 - (1*(1.20/100*10)) = 12p
             basket.Add(testApple);
             basket.Add(testApple);
             basket.Add(testLoaf);
@@ -97,6 +97,30 @@ namespace PriceCalculator.PriceStrategies.Tests
 
             Assert.AreEqual(0.12m, discount);
             Assert.AreEqual($"MultiBuyDiscount applied 1 times for 2 Apples. 10% off 1 loaf of Bread: -12p", message);
+        }
+
+        [TestMethod]
+        public void Will_Only_Discount_Matched_Item_Once_Source_Apples_Target_Bread()
+        {
+            // discount 10% on 2 apples
+            var strategy = new MultiBuyDiscountPriceStrategy("Apples", 2, "Bread", 10);
+
+            Item testApple = new Item("Apples", "30p", Unit.bag);
+            Item testLoaf = new Item("Bread", "£1.20p", Unit.loaf);
+            var basket = new Basket(new[] { strategy }, Enumerable.Empty<IAmAnItemPriceStrategy>());
+
+            //5 apples should be 1* discount = (1*(1.20/100*10)) = 12p
+            // as there is only one loaf
+            basket.Add(testApple);
+            basket.Add(testApple);
+            basket.Add(testApple);
+            basket.Add(testApple);
+            basket.Add(testLoaf);
+
+            var (discount, message) = strategy.GetDiscount(basket);
+
+            Assert.AreEqual(0.12m, discount);
+            Assert.AreEqual($"MultiBuyDiscount applied 1 times for 4 Apples. 10% off 1 loaf of Bread: -12p", message);
         }
     }
 }

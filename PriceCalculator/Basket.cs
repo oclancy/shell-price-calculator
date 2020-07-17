@@ -6,7 +6,7 @@ using System.Linq;
 namespace PriceCalculator
 {
     /// <summary>
-    /// 
+    /// Basket of items to calculte price for
     /// </summary>
     /// <seealso cref="System.Collections.Generic.List{PriceCalculator.Item}" />
     public class Basket : List<Item>
@@ -60,6 +60,7 @@ namespace PriceCalculator
             SubTotal = this.Sum(i => i.Price);
             Price = SubTotal;
 
+            //item strategies
             foreach (var strategy in ItemPricingStrategies)
             {
                 foreach (var item in this)
@@ -70,6 +71,7 @@ namespace PriceCalculator
                 }
             }
 
+            //basket strategies
             foreach (var strategy in BasketPricingStrategies)
             {
                 var (discount, message) = strategy.GetDiscount(this);

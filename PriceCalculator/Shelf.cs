@@ -21,6 +21,9 @@ namespace PriceCalculator
         /// </value>
         public Dictionary<string, Item> Items { get; private set; }
 
+        /// <summary>
+        /// The line parts
+        /// </summary>
         enum ItemParts
         {
             Name,

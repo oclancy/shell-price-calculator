@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PriceCalculator.PricingStrategies
+﻿namespace PriceCalculator.PricingStrategies
 {
     /// <summary>
     /// Basket discount strategy

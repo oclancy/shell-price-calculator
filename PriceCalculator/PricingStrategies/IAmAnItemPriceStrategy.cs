@@ -10,7 +10,7 @@ namespace PriceCalculator.PricingStrategies
         /// Gets the discount.
         /// </summary>
         /// <param name="item">The item.</param>
-        /// <returns></returns>
+        /// <returns>The dsicount and a message for output</returns>
         (decimal, string) GetDiscount(Item item);
     }
 }

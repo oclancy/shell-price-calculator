@@ -5,6 +5,8 @@ using System.Linq;
 namespace PriceCalculator.PricingStrategies
 {
     /// <summary>
+    /// Describes a multibuy discount scheme.
+    /// e.g. buy 2 apples get 10% of 1 loaf of bread.
     /// 
     /// </summary>
     /// <seealso cref="PriceCalculator.PricingStrategies.IAmABasketPriceStrategy" />
@@ -44,6 +46,7 @@ namespace PriceCalculator.PricingStrategies
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiBuyDiscountPriceStrategy"/> class.
+        /// Targettype set to Sourcetype.
         /// </summary>
         /// <param name="sourceItemType">Type of the source item.</param>
         /// <param name="sourceQty">The source qty.</param>
@@ -72,9 +75,11 @@ namespace PriceCalculator.PricingStrategies
                     var sourceType = basket.First(i => i.Name == SourceItemType);
                     var targetType = basket.First(i => i.Name == TargetItemType);
                     var eligibleDiscounts = qtyOfSourceItems / Quantity;
-                    var discount = eligibleDiscounts * (targetType.Price / 100 * PercDiscount);
-                    return (discount, $"MultiBuyDiscount applied {eligibleDiscounts} times for {qtyOfSourceItems} {SourceItemType}. " +
-                                      $"{PercDiscount}% off {eligibleDiscounts} {targetType.Unit} of {TargetItemType}: -{discount.ToCurrencyStringFromDecimal()}");
+                    //only apply once per eligible item
+                    var discountsToAppy = Math.Min(eligibleDiscounts, qtyOfTargetType);
+                    var discount = discountsToAppy * (targetType.Price / 100 * PercDiscount);
+                    return (discount, $"MultiBuyDiscount applied {discountsToAppy} times for {qtyOfSourceItems} {SourceItemType}. " +
+                                      $"{PercDiscount}% off {discountsToAppy} {targetType.Unit} of {TargetItemType}: -{discount.ToCurrencyStringFromDecimal()}");
                 }
             }
 

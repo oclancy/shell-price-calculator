@@ -3,6 +3,10 @@ using System.Globalization;
 
 namespace PriceCalculator.Extensions
 {
+    /// <summary>
+    /// Provides naive string to decimal and decimal to string conversions to 
+    /// fulfill the requirements of the spec.
+    /// </summary>
     public static class StringCurrencyConversions
     {
         /// <summary>
@@ -27,8 +31,8 @@ namespace PriceCalculator.Extensions
         }
 
         /// <summary>
-        /// Converts decimal to  Sterling currency string.
-        /// Pretty naive implemntation to fulfill brief
+        /// Converts decimal to Sterling currency string.
+        /// Pretty naive implementation to fulfill brief
         /// </summary>
         /// <param name="source">The source.</param>
         /// <returns></returns>

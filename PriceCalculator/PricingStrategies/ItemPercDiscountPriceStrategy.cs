@@ -5,7 +5,7 @@ using System;
 namespace PriceCalculator.PricingStrategies
 {
     /// <summary>
-    /// Describes a discount for a target item type
+    /// Describes a discount for a single target item type
     /// </summary>
     /// <seealso cref="PriceCalculator.PricingStrategies.IAmAnItemPricingStrategy" />
     public class ItemPercDiscountPriceStrategy : IAmAnItemPriceStrategy
