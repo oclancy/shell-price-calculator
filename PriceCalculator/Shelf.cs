@@ -6,8 +6,19 @@ using System.Linq;
 
 namespace PriceCalculator
 {
+    /// <summary>
+    /// Represnts the avilable items
+    /// Items are read from a source file
+    /// Default source file name is ".\items.txt"
+    /// </summary>
     public class Shelf
     {
+        /// <summary>
+        /// Gets the items.
+        /// </summary>
+        /// <value>
+        /// The items.
+        /// </value>
         public Dictionary<string, Item> Items { get; private set; }
 
         enum ItemParts
@@ -17,11 +28,20 @@ namespace PriceCalculator
             Unit
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Shelf"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
         public Shelf(string source = "items.txt")
         {
             ReadItems(source);
         }
 
+        /// <summary>
+        /// Reads the items.
+        /// Will throw and exit program if no items available
+        /// </summary>
+        /// <param name="source">The source.</param>
         private void ReadItems(string source)
         {
             try
@@ -36,26 +56,39 @@ namespace PriceCalculator
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine($"{source} not found. No discounts to apply");
+                Console.WriteLine($"{source} not found. No items available. Terminating...");
+                throw;
             }
         }
 
-        internal Item GetItem(string item)
+        /// <summary>
+        /// Gets the item.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns></returns>
+        public Item GetItem(string item)
         {
             if (Items.ContainsKey(item))
                 return Items[item];
             return null;
         }
 
+        /// <summary>
+        /// Creates the item from the line in the source
+        /// </summary>
+        /// <param name="line">The line.</param>
+        /// <returns></returns>
         Item CreateItem(string line)
         {
             try
             {
                 var parts = line.Split(',');
-                return new Item(parts[(int)ItemParts.Name],
-                                parts[(int)ItemParts.Price],
-                                Enum.Parse<Unit>(parts[(int)ItemParts.Unit]));
-
+                if (parts.Count() == 3)
+                {
+                    return new Item(parts[(int)ItemParts.Name],
+                                    parts[(int)ItemParts.Price],
+                                    Enum.Parse<Unit>(parts[(int)ItemParts.Unit]));
+                }
             }
             catch (Exception ex)
             {

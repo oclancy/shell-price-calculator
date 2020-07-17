@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PriceCalculator.Extensions;
 using PriceCalculator.PricingStrategies;
+using System;
 using System.Linq;
 
 namespace PriceCalculator.PriceStrategies.Tests
@@ -8,6 +9,13 @@ namespace PriceCalculator.PriceStrategies.Tests
     [TestClass]
     public class When_Using_StringCurrencyConverstions
     {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Will_Throw_On_Empty_String()
+        {
+            var price = "".ToDecimalFromCurrency();
+        }
+
         [TestMethod]
         public void Can_Convert_Price_From_Pence()
         {

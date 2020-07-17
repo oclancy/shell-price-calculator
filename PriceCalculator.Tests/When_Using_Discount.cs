@@ -15,5 +15,15 @@ namespace PriceCalculator.Tests
 
             Assert.AreEqual(1, discounts.BasketPriceStrategies.Count());
         }
+
+        [TestMethod]
+        public void Will_Not_Throw_If_File_Not_Found()
+        {
+            var discounts = new Discounts("notreal.txt");
+
+            Assert.AreEqual(0, discounts.ItemPriceStrategies.Count());
+
+            Assert.AreEqual(0, discounts.BasketPriceStrategies.Count());
+        }
     }
 }
